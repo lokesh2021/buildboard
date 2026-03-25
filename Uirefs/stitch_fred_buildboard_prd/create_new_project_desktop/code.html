@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create New Project - Project Alpha</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#dbdad9",
+              "secondary-fixed-dim": "#d7d3d8",
+              "surface-container-low": "#f6f3f2",
+              "primary": "#4d44e3",
+              "surface-tint": "#4d44e3",
+              "on-error-container": "#782232",
+              "primary-fixed": "#e2dfff",
+              "tertiary-fixed": "#d2d9f8",
+              "error-container": "#ff8b9a",
+              "outline": "#7b7a7a",
+              "inverse-primary": "#8582ff",
+              "error-dim": "#4f0116",
+              "on-error": "#fff7f7",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#faf8ff",
+              "tertiary": "#575e78",
+              "secondary": "#605e62",
+              "on-primary-fixed-variant": "#4a40e0",
+              "background": "#fcf9f8",
+              "on-primary-container": "#3f33d6",
+              "on-secondary-container": "#525155",
+              "on-secondary-fixed-variant": "#5c5b5f",
+              "on-primary": "#faf6ff",
+              "tertiary-dim": "#4b526c",
+              "tertiary-container": "#d2d9f8",
+              "outline-variant": "#b3b2b1",
+              "error": "#9e3f4e",
+              "on-tertiary-fixed-variant": "#4e556f",
+              "surface-container-high": "#eae8e7",
+              "on-surface-variant": "#5f5f5f",
+              "on-surface": "#323232",
+              "surface": "#fcf9f8",
+              "on-tertiary-container": "#444c65",
+              "on-tertiary-fixed": "#323951",
+              "on-secondary-fixed": "#403f43",
+              "secondary-fixed": "#e5e1e6",
+              "surface-container": "#f0eded",
+              "on-primary-fixed": "#2a13c5",
+              "secondary-dim": "#545256",
+              "tertiary-fixed-dim": "#c4cbe9",
+              "primary-dim": "#4034d7",
+              "primary-fixed-dim": "#d2d0ff",
+              "surface-variant": "#e4e2e2",
+              "primary-container": "#e2dfff",
+              "inverse-surface": "#0e0e0e",
+              "inverse-on-surface": "#9e9c9c",
+              "on-background": "#323232",
+              "surface-container-highest": "#e4e2e2",
+              "surface-bright": "#fcf9f8",
+              "secondary-container": "#e5e1e6",
+              "on-secondary": "#fcf8fc"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-overlay {
+            background: rgba(14, 14, 14, 0.4);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col bg-[#f6f3f2] dark:bg-[#1a1a1a] border-none font-['Inter'] text-sm antialiased p-4 gap-y-2 z-30">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">architecture</span>
+</div>
+<div>
+<h2 class="text-lg font-bold tracking-tight text-[#4d44e3] dark:text-[#6366f1]">Project Alpha</h2>
+<p class="text-xs text-on-surface-variant leading-none">Enterprise Plan</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-[#2d2d2d] text-[#4d44e3] dark:text-[#6366f1] font-semibold rounded-lg shadow-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+                Projects
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-gray-400 font-medium hover:bg-[#ffffff80] dark:hover:bg-[#ffffff10] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                Workspace
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-gray-400 font-medium hover:bg-[#ffffff80] dark:hover:bg-[#ffffff10] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Team
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-gray-400 font-medium hover:bg-[#ffffff80] dark:hover:bg-[#ffffff10] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+                Insights
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-gray-400 font-medium hover:bg-[#ffffff80] dark:hover:bg-[#ffffff10] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/10">
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-gray-400 font-medium hover:bg-[#ffffff80] dark:hover:bg-[#ffffff10] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help Center
+            </a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-[#fcf9f8]/80 dark:bg-[#0e0e0e]/80 backdrop-blur-xl flex items-center justify-between px-8 w-full h-full font-['Inter'] font-medium text-sm">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Search projects..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/20 mx-2"></div>
+<div class="flex items-center gap-3">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container-high" data-alt="Close up professional headshot of a creative director in a minimalist studio setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNBCBXdO8ctQsvb2qUnFRRP8L96H5OcBk9pshl_eNabnWFNLkGwo8LwgiAVskMtiGipi3sEIAokQhtlr2wwMLpKqUdIJt3sxJVBnhtfEUlznGGtzNHAUkego83YjIqGsoIZnUTyHg_WLl4jzpQY8NAn-9_OPVlXQgLpy47z-4U7ZrFKFSwyfC-YZZ05IS5CD2xlbijLK3fHPwnm0qDxiIkp-1ZWln_tBW-Nkwmp3wMoWgAbTIZLFUqMMaob1avSia7FSe8mwGI1fCX"/>
+<span class="font-semibold text-on-surface">Alex Rivera</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (Blurred Background) -->
+<main class="ml-64 pt-16 p-8 min-h-screen">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-on-surface mb-2">Projects</h1>
+<p class="text-on-surface-variant">Manage your active workspaces and architectural blueprints.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-dim text-on-primary px-6 py-2.5 rounded-lg font-semibold shadow-lg shadow-primary/20 flex items-center gap-2 scale-95 transition-transform active:scale-90">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Create New
+                </button>
+</div>
+<!-- Bento Grid Dashboard Background -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Large Feature Card -->
+<div class="col-span-8 bg-surface-container-lowest p-6 rounded-xl relative overflow-hidden h-[400px]">
+<div class="relative z-10 flex flex-col h-full">
+<span class="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full self-start mb-4 uppercase tracking-wider">Active Project</span>
+<h2 class="text-2xl font-bold mb-2">Metropolitan Skyway</h2>
+<p class="text-on-surface-variant max-w-md">Phase 4: Structural optimization and curtain wall detailing for the north elevation.</p>
+<div class="mt-auto flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-surface-container-high"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest bg-primary-container flex items-center justify-center text-[10px] text-primary font-bold">+5</div>
+</div>
+<div class="h-1.5 flex-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div>
+</div>
+<span class="text-xs font-bold text-on-surface-variant">64%</span>
+</div>
+</div>
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
+<img alt="Project Visual" class="w-full h-full object-cover opacity-30" data-alt="Minimalist architectural blueprint of a modern skyscraper with clean geometric lines on a light gray paper background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiIaNge0XFQaSFCPTxO3qaMxodzSmf0Odq-uBHoFw7KKuZDiEHpzVUfIT25lMBda2JIHkmZ7oGaPElJts3Uy2ZE7YaTsYC27lodMKmG4PSj0Ne9t5wXspRHNWShQCgqiwmXLpugljffcfIHYcoe4f14z7ozRdxKFk2QkEdF4TBjqv2YfKOMHZvrswyvrQcL1NO7g8GQMiCO20YqPJQUzcGQEelt83gn_J7_ivjKC6gUAkulv5UYcuaM7AipxF-_Ja93nDD0StTIQU5"/>
+</div>
+</div>
+<!-- Small Stat Cards -->
+<div class="col-span-4 grid grid-rows-2 gap-6">
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">schedule</span>
+</div>
+<span class="text-green-600 font-bold text-xs">+12%</span>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface">142</p>
+<p class="text-xs text-on-surface-variant font-medium">Hours logged this week</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">task_alt</span>
+</div>
+<span class="text-on-surface-variant font-bold text-xs">8 left</span>
+</div>
+<div>
+<p class="text-3xl font-black text-on-surface">24</p>
+<p class="text-xs text-on-surface-variant font-medium">Pending Approvals</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 modal-overlay flex items-center justify-center p-6">
+<!-- Modal Container -->
+<div class="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-2xl flex flex-col overflow-hidden">
+<!-- Modal Header -->
+<div class="px-8 py-6 border-b border-outline-variant/10 flex justify-between items-center">
+<h2 class="text-xl font-bold tracking-tight text-on-surface">Create New Project</h2>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-8 space-y-6">
+<!-- Project Name -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Project Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="e.g. Neo-Brutalist Residence" type="text"/>
+</div>
+<!-- Description -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-on-surface-variant block">Description</label>
+<textarea class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-3 px-4 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline/50 resize-none" placeholder="Briefly describe the project goals and scope..." rows="4"></textarea>
+</div>
+<!-- Invite Team Members -->
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<label class="text-sm font-semibold text-on-surface-variant">Invite Team Members</label>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">Optional</span>
+</div>
+<div class="flex gap-2">
+<div class="flex-1 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">mail</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/15 rounded-lg py-3 pl-10 pr-4 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-outline/50" placeholder="colleague@kinetic.com" type="email"/>
+</div>
+<button class="bg-surface-container-high px-4 rounded-lg text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors">
+                            Add
+                        </button>
+</div>
+<!-- Mock Selected Members -->
+<div class="flex flex-wrap gap-2 pt-1">
+<div class="flex items-center gap-2 bg-primary/5 text-primary text-xs font-bold pl-1.5 pr-2.5 py-1.5 rounded-lg">
+<div class="w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-[8px]">JD</div>
+                            Jane Doe
+                            <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary-dim">close</span>
+</div>
+<div class="flex items-center gap-2 bg-primary/5 text-primary text-xs font-bold pl-1.5 pr-2.5 py-1.5 rounded-lg">
+<div class="w-5 h-5 rounded-full bg-primary-container flex items-center justify-center text-[8px]">MK</div>
+                            Mike King
+                            <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-primary-dim">close</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 bg-surface-container-low/50 border-t border-outline-variant/10 flex justify-end items-center gap-4">
+<button class="px-5 py-2.5 text-on-surface-variant font-semibold text-sm hover:text-on-surface transition-colors">
+                    Cancel
+                </button>
+<button class="bg-gradient-to-br from-primary to-primary-dim text-on-primary px-8 py-2.5 rounded-lg font-bold shadow-lg shadow-primary/25 hover:scale-[1.02] active:scale-95 transition-all">
+                    Create Project
+                </button>
+</div>
+</div>
+</div>
+</body></html>

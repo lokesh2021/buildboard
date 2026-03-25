@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Workspace - Project Alpha</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#fff7f7",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#e2dfff",
+              "surface-container": "#f0eded",
+              "primary": "#4d44e3",
+              "background": "#fcf9f8",
+              "surface-container-low": "#f6f3f2",
+              "tertiary-fixed-dim": "#c4cbe9",
+              "tertiary-fixed": "#d2d9f8",
+              "on-primary-fixed-variant": "#4a40e0",
+              "on-primary-fixed": "#2a13c5",
+              "inverse-surface": "#0e0e0e",
+              "secondary-dim": "#545256",
+              "on-primary": "#faf6ff",
+              "tertiary": "#575e78",
+              "surface-container-highest": "#e4e2e2",
+              "secondary-fixed-dim": "#d7d3d8",
+              "surface": "#fcf9f8",
+              "error": "#9e3f4e",
+              "on-tertiary-fixed-variant": "#4e556f",
+              "on-tertiary-fixed": "#323951",
+              "on-secondary": "#fcf8fc",
+              "on-background": "#323232",
+              "primary-fixed": "#e2dfff",
+              "surface-tint": "#4d44e3",
+              "surface-bright": "#fcf9f8",
+              "surface-dim": "#dbdad9",
+              "outline": "#7b7a7a",
+              "on-secondary-container": "#525155",
+              "inverse-primary": "#8582ff",
+              "on-tertiary": "#faf8ff",
+              "tertiary-dim": "#4b526c",
+              "on-primary-container": "#3f33d6",
+              "primary-dim": "#4034d7",
+              "on-tertiary-container": "#444c65",
+              "outline-variant": "#b3b2b1",
+              "on-surface": "#323232",
+              "on-secondary-fixed-variant": "#5c5b5f",
+              "error-dim": "#4f0116",
+              "on-secondary-fixed": "#403f43",
+              "inverse-on-surface": "#9e9c9c",
+              "surface-variant": "#e4e2e2",
+              "on-error-container": "#782232",
+              "surface-container-high": "#eae8e7",
+              "primary-fixed-dim": "#d2d0ff",
+              "secondary-container": "#e5e1e6",
+              "on-surface-variant": "#5f5f5f",
+              "error-container": "#ff8b9a",
+              "tertiary-container": "#d2d9f8",
+              "secondary-fixed": "#e5e1e6",
+              "secondary": "#605e62"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #e4e2e2; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased overflow-hidden h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-[#fcf9f8] dark:bg-[#0e0e0e] text-[#4F46E5] dark:text-[#4d44e3] font-['Inter'] antialiased text-sm leading-relaxed docked full-width top-0 border-b border-opacity-15 border-slate-300 dark:border-slate-700 flex justify-between items-center w-full px-6 h-16 z-50">
+<div class="flex items-center gap-4">
+<span class="text-lg font-semibold text-slate-900 dark:text-slate-100">Project Alpha</span>
+<div class="flex items-center gap-2 text-slate-500 text-xs">
+<span>/</span>
+<span class="hover:underline cursor-pointer">Engineering</span>
+<span>/</span>
+<span class="text-on-surface font-medium">API Docs - Core Services v2.4</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="hidden md:flex items-center gap-6 mr-6">
+<a class="text-[#4F46E5] font-bold border-b-2 border-[#4F46E5] py-5" href="#">Engineering</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors px-2 py-1 rounded" href="#">API Docs</a>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-dim text-on-primary px-4 py-2 rounded shadow-sm font-medium transition-transform active:scale-95">Edit Document</button>
+<button class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors p-2 rounded flex items-center gap-1">
+<span class="material-symbols-outlined text-[20px]">share</span>
+<span>Share</span>
+</button>
+<button class="text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors p-2 rounded">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Replaced with global hierarchical sidebar from SCREEN_28) -->
+<aside class="h-full w-64 bg-[#f6f3f2] dark:bg-slate-900 flex flex-col border-r border-slate-200/30 dark:border-slate-800/30 font-['Inter'] text-sm font-medium tracking-tight z-40">
+<div class="sidebar-scroll overflow-y-auto flex flex-col h-full py-6 px-3">
+<!-- Project Switcher Header -->
+<div class="mb-8 px-4">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">architecture</span>
+</div>
+<div>
+<h2 class="text-lg font-bold tracking-tighter text-[#4d44e3] dark:text-[#6366f1]">Project Alpha</h2>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Company HQ</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-between px-3 py-2 bg-white dark:bg-neutral-800 rounded-lg border border-outline-variant/20 shadow-sm text-sm font-medium">
+<span class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">layers</span> Project Alpha</span>
+<span class="material-symbols-outlined text-sm">unfold_more</span>
+</button>
+</div>
+<!-- Navigation Clusters -->
+<nav class="flex-1 space-y-6">
+<!-- Departments Section -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Departments</p>
+<!-- Engineering (Active) -->
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 bg-white dark:bg-neutral-800 rounded-lg text-[#4d44e3] dark:text-[#6366f1] border-l-4 border-[#4d44e3] shadow-sm" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span class="font-semibold">Engineering</span>
+</a>
+<!-- Nested Links for Engineering -->
+<div class="ml-9 space-y-1 border-l border-outline-variant/20 pl-4 mt-1">
+<a class="flex items-center gap-3 px-4 py-2 text-[#4d44e3] dark:text-[#6366f1] bg-white/50 rounded-lg text-sm font-medium" href="#">
+<span class="material-symbols-outlined text-[18px]">description</span>
+                                Documents
+                            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200/50 transition-colors text-sm" href="#">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+                                Trackers
+                            </a>
+</div>
+</div>
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                        Marketing
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                        Product
+                    </a>
+</div>
+<!-- Global Links -->
+<div class="space-y-1 pt-4 border-t border-outline-variant/10">
+<p class="px-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Organization</p>
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+                        Members
+                    </a>
+<a class="flex items-center gap-3 px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+</div>
+</nav>
+<!-- Footer Action & User -->
+<div class="mt-auto pt-6 space-y-4">
+<button class="w-full flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg font-bold shadow-lg shadow-primary/20 hover:scale-[0.99] transition-transform">
+<span class="material-symbols-outlined">add</span>
+                    New Project
+                </button>
+<div class="flex items-center justify-between px-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a professional man with a friendly expression in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmoX6bblcaC5jiIqX8XiNFPp6fIKaA-nCPtenM7KOhuUoiO8hi1ABW8SVA06Bi3Z8LZZLilPjMqnJAxHwFt1040c9bXO8TAJCUzPxYTa8q9j13-B-w8HWoIJBfNp9DhUKf2ZDAu62nM4ozhRQOcw-S9SztijKmhr4t7-51Gqi33W1p8Z5GzP7zydgQZGyLUF-lfhZB1Ws61CvhsSzz2IlvUPFzCJFxPOmZDnk6IGjX4zvLzQeRYNMw8IOjs2Jv1Tl9KcB6N4Cd8akl"/>
+</div>
+<span class="text-xs font-semibold text-on-surface">Alex Rivera</span>
+</div>
+<span class="material-symbols-outlined text-neutral-400 cursor-pointer hover:text-primary transition-colors">logout</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Document Canvas -->
+<section class="flex-1 overflow-y-auto bg-background p-12 lg:p-20 relative">
+<div class="max-w-3xl mx-auto space-y-10">
+<!-- Title & Meta -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 text-xs text-on-surface-variant uppercase tracking-widest font-bold">
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded">v2.4 Stable</span>
+<span>Last updated: 14 mins ago</span>
+</div>
+<h1 class="text-4xl font-extrabold text-on-background tracking-tight">Core Services API Documentation</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed">Detailed technical specifications for the Core Services orchestration layer, including authentication patterns, rate limiting, and standard response schemas.</p>
+</div>
+<!-- Asymmetric Bento-style Section: Authentication -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl border-l-4 border-primary">
+<h2 class="text-xl font-bold mb-4">Bearer Authentication</h2>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">
+                                All requests to the Core Services API must include a valid JSON Web Token (JWT) in the `Authorization` header. Tokens are generated via the `/auth/token` endpoint.
+                            </p>
+<div class="bg-inverse-surface rounded-lg p-4 font-mono text-xs text-slate-300 overflow-x-auto">
+<span class="text-primary-dim">curl</span> -X GET "https://api.alpha.com/v1/services" \<br/>
+                                    -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+                            </div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-3xl mb-4">security</span>
+<h3 class="font-bold text-sm uppercase tracking-wider mb-2">Scope Required</h3>
+<ul class="text-xs text-on-surface-variant space-y-2">
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> core.read</li>
+<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> core.write</li>
+</ul>
+</div>
+</div>
+<!-- Content Section -->
+<div class="space-y-6">
+<h2 class="text-2xl font-bold tracking-tight">Standard Response Codes</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg">
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-green-600 bg-green-50 px-2 py-1 rounded">200 OK</span>
+<span class="text-sm text-on-surface font-medium">Standard successful response.</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg">
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded">401 Unauthorized</span>
+<span class="text-sm text-on-surface font-medium">Authentication token missing or invalid.</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-lg">
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-red-600 bg-red-50 px-2 py-1 rounded">429 Rate Limit</span>
+<span class="text-sm text-on-surface font-medium">Quota exceeded for the current period.</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Formatting Toolbar -->
+<div class="fixed bottom-10 left-[calc(50%+160px)] transform -translate-x-1/2 glass-panel shadow-2xl rounded-full px-6 py-3 flex items-center gap-4 border border-outline-variant border-opacity-20">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">format_bold</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">format_italic</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">format_underlined</span></button>
+<div class="w-px h-6 bg-outline-variant opacity-30"></div>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">code</span></button>
+<div class="w-px h-6 bg-outline-variant opacity-30"></div>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">link</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">image</span></button>
+</div>
+</section>
+<!-- Right Sidebar: Share & Permissions (Expanded Context) -->
+<aside class="w-80 bg-surface-container-low border-l border-outline-variant border-opacity-10 p-6 flex flex-col gap-8">
+<!-- Share Section -->
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Share Document</h3>
+<div class="space-y-4">
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm px-4 py-3 focus:ring-2 focus:ring-primary outline-none shadow-sm" placeholder="Add email or group..." type="email"/>
+<button class="absolute right-2 top-1.5 bg-primary text-on-primary text-xs font-bold px-3 py-1.5 rounded">Invite</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-8 h-8 rounded-full bg-white" data-alt="Portrait of a professional man with glasses and short hair in a clean avatar style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDciEYDyiBG2a8YgFo3GmNm-uY-_fB5SqNIxZYwIpESaBif7WsWUwnx_UboXHp7WJHCGfHytDV6jUO37wPUiIG9lvMq_lLugtEu8LkpxqPVGHVSSzGs5xb_4HUcOh6S6PIltKwt4sYS7WdUgXzsGsgakWwfEJWlJ3_hWrgze2b9lHPrik78ZljK_2X9pXlDPQnEVlct-rolPjPWjTBA7mM9Oe3uobpXmnfWaxLlwLLMnfc4pb13sz9_rbrNUQ8aHAMVSNKTE3gB-Kos"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Marcus Chen</p>
+<p class="text-[10px] text-on-surface-variant">Owner</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-8 h-8 rounded-full bg-white" data-alt="Portrait of a professional woman with long dark hair in a minimal modern avatar style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHIhjWcJ34reDSVlyMkvvCoErmVI73vArGsnOBl7NiyzWtzW2OXbRVPPMIU82xxokpP_TFBdqopZ0RIw8F14VEgO8-Jby7HtlDiywq9WdyL7-KpEFjiAHc1IwMf3F4fdJLKdXxWgSoqWrAnphcYeG4DDhnrHW4XurnMmrn99gKLv_L9kyriyqSjulVsBdsX0n-reHerxmohitdtRVIojYUC1AGQFAgxTTMgpygPqxvUNaTEnsfyfHBLQZtpRbGCBAiAjBlrgArUk-e"/>
+<div>
+<p class="text-xs font-bold text-on-surface">Sarah Williams</p>
+<p class="text-[10px] text-on-surface-variant">Editor</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-sm">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- General Access -->
+<div>
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">General Access</h3>
+<div class="bg-surface-container-lowest rounded-lg p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">public</span>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<p class="text-xs font-bold text-on-surface">Anyone with the link</p>
+<span class="material-symbols-outlined text-xs">expand_more</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-1 leading-relaxed">Anyone with this link can view the documentation.</p>
+<button class="mt-3 text-[10px] font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+                                Copy Link
+                            </button>
+</div>
+</div>
+</div>
+<!-- Departments/Roles -->
+<div class="mt-auto">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Assigned Roles</h3>
+<div class="space-y-2">
+<div class="flex items-center justify-between text-xs p-2 hover:bg-surface-container rounded transition-colors cursor-pointer">
+<span class="font-medium text-on-surface">Engineering Dept.</span>
+<span class="bg-primary-container text-on-primary-container px-2 py-0.5 rounded-[4px] text-[10px]">Editor</span>
+</div>
+<div class="flex items-center justify-between text-xs p-2 hover:bg-surface-container rounded transition-colors cursor-pointer">
+<span class="font-medium text-on-surface">Product Management</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-2 py-0.5 rounded-[4px] text-[10px]">Viewer</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</div>
+</body></html>
