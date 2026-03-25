@@ -19,6 +19,7 @@ import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
 import ProjectSidebar from '../components/project/ProjectSidebar'
 import NewTaskModal from '../components/project/NewTaskModal'
+import InviteMembersModal from '../components/project/InviteMembersModal'
 
 // ─── constants ───────────────────────────────────────────────────────────────
 
@@ -236,6 +237,7 @@ export default function ProjectTrackers() {
   const [activeDept, setActiveDept] = useState('engineering')
   const [search, setSearch] = useState('')
   const [showModal, setShowModal] = useState(false)
+  const [showInvite, setShowInvite] = useState(false)
   const [defaultModalStatus, setDefaultModalStatus] = useState('todo')
   const [editingTask, setEditingTask] = useState(null)
   const [activeTask, setActiveTask] = useState(null) // for DnD overlay
@@ -380,6 +382,13 @@ export default function ProjectTrackers() {
             </div>
 
             <button
+              onClick={() => setShowInvite(true)}
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors"
+            >
+              <span className="material-symbols-outlined text-sm">group_add</span>
+              Members
+            </button>
+            <button
               onClick={() => openNewTask('todo')}
               className="flex items-center gap-2 py-2 px-4 primary-gradient text-on-primary rounded-lg text-sm font-semibold shadow-sm shadow-primary/20 active:scale-95 transition-transform"
             >
@@ -466,6 +475,12 @@ export default function ProjectTrackers() {
           task={editingTask}
           onClose={() => setEditingTask(null)}
           onUpdated={handleTaskUpdated}
+        />
+      )}
+      {showInvite && project && (
+        <InviteMembersModal
+          project={project}
+          onClose={() => setShowInvite(false)}
         />
       )}
     </div>

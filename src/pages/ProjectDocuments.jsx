@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext'
 import ProjectSidebar from '../components/project/ProjectSidebar'
 import DocumentCard from '../components/project/DocumentCard'
 import NewDocumentModal from '../components/project/NewDocumentModal'
+import InviteMembersModal from '../components/project/InviteMembersModal'
 
 const DEPT_LABELS = {
   engineering: { label: 'Engineering', icon: 'engineering', description: 'Technical specifications, API references, and infrastructure protocols.' },
@@ -25,6 +26,7 @@ export default function ProjectDocuments() {
   const [viewMode, setViewMode] = useState('grid') // 'grid' | 'list'
   const [showModal, setShowModal] = useState(false)
   const [editingDoc, setEditingDoc] = useState(null)
+  const [showInvite, setShowInvite] = useState(false)
   const [search, setSearch] = useState('')
 
   const dept = DEPT_LABELS[activeDept] || DEPT_LABELS.engineering
@@ -126,11 +128,12 @@ export default function ProjectDocuments() {
               />
             </div>
 
-            <button className="p-2 text-on-surface-variant hover:text-primary transition-colors active:scale-95">
-              <span className="material-symbols-outlined">notifications</span>
-            </button>
-            <button className="p-2 text-on-surface-variant hover:text-primary transition-colors active:scale-95">
-              <span className="material-symbols-outlined">settings</span>
+            <button
+              onClick={() => setShowInvite(true)}
+              className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-lg transition-colors active:scale-95"
+            >
+              <span className="material-symbols-outlined text-sm">group_add</span>
+              Members
             </button>
             <UserAvatar />
           </div>
@@ -263,6 +266,13 @@ export default function ProjectDocuments() {
           document={editingDoc}
           onClose={() => setEditingDoc(null)}
           onUpdated={handleDocUpdated}
+        />
+      )}
+
+      {showInvite && project && (
+        <InviteMembersModal
+          project={project}
+          onClose={() => setShowInvite(false)}
         />
       )}
     </div>
