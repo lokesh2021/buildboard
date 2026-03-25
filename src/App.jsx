@@ -3,6 +3,7 @@ import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
 import ProjectDocuments from './pages/ProjectDocuments'
 import DocumentView from './pages/DocumentView'
+import ProjectTrackers from './pages/ProjectTrackers'
 import { useAuth } from './context/AuthContext'
 
 function ProtectedRoute({ children }) {
@@ -44,6 +45,14 @@ export default function App() {
         element={
           <ProtectedRoute>
             <DocumentView />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/project/:projectId/trackers"
+        element={
+          <ProtectedRoute>
+            <ProjectTrackers />
           </ProtectedRoute>
         }
       />

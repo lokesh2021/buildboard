@@ -11,7 +11,7 @@ const DEPARTMENTS = [
 ]
 
 // Pass project=null for the dashboard (home) context
-export default function ProjectSidebar({ project = null, activeDept, onDeptChange, onNewProject }) {
+export default function ProjectSidebar({ project = null, activeDept, onDeptChange, onNewProject, activeSection = 'documents' }) {
   const { signOut } = useAuth()
   const navigate = useNavigate()
   const [expandedDept, setExpandedDept] = useState(activeDept || null)
@@ -176,14 +176,20 @@ export default function ProjectSidebar({ project = null, activeDept, onDeptChang
                     </button>
                     {isExpanded && (
                       <div className="ml-8 space-y-0.5 border-l border-outline-variant/20 pl-3 mt-1 pb-1">
-                        <a href="#" className="flex items-center gap-2 px-3 py-1.5 text-primary bg-white/50 rounded-lg text-xs font-semibold">
+                        <button
+                          onClick={() => navigate(`/project/${project.id}/documents`)}
+                          className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors text-left ${activeSection === 'documents' ? 'text-primary bg-white/50' : 'text-on-surface-variant hover:text-primary hover:bg-surface-container/50'}`}
+                        >
                           <span className="material-symbols-outlined text-base">description</span>
                           Documents
-                        </a>
-                        <a href="#" className="flex items-center gap-2 px-3 py-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container/50 rounded-lg text-xs transition-colors">
+                        </button>
+                        <button
+                          onClick={() => navigate(`/project/${project.id}/trackers`)}
+                          className={`w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors text-left ${activeSection === 'trackers' ? 'text-primary bg-white/50' : 'text-on-surface-variant hover:text-primary hover:bg-surface-container/50'}`}
+                        >
                           <span className="material-symbols-outlined text-base">query_stats</span>
                           Trackers
-                        </a>
+                        </button>
                       </div>
                     )}
                   </div>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskTracker - Engineering Kanban</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .kanban-column {
+            min-width: 320px;
+            max-width: 400px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "on-tertiary-fixed": "#323951",
+                "on-primary-fixed": "#2a13c5",
+                "surface-container": "#f0eded",
+                "on-tertiary-fixed-variant": "#4e556f",
+                "tertiary": "#575e78",
+                "surface-bright": "#fcf9f8",
+                "tertiary-dim": "#4b526c",
+                "on-tertiary": "#faf8ff",
+                "on-primary-fixed-variant": "#4a40e0",
+                "inverse-surface": "#0e0e0e",
+                "on-primary-container": "#3f33d6",
+                "surface-container-low": "#f6f3f2",
+                "secondary-fixed": "#e5e1e6",
+                "outline-variant": "#b3b2b1",
+                "primary": "#4d44e3",
+                "on-error-container": "#782232",
+                "surface": "#fcf9f8",
+                "surface-container-high": "#eae8e7",
+                "primary-fixed": "#e2dfff",
+                "surface-variant": "#e4e2e2",
+                "on-surface-variant": "#5f5f5f",
+                "surface-container-lowest": "#ffffff",
+                "on-background": "#323232",
+                "error-container": "#ff8b9a",
+                "tertiary-fixed-dim": "#c4cbe9",
+                "on-secondary": "#fcf8fc",
+                "tertiary-fixed": "#d2d9f8",
+                "secondary": "#605e62",
+                "on-secondary-container": "#525155",
+                "inverse-on-surface": "#9e9c9c",
+                "background": "#fcf9f8",
+                "error-dim": "#4f0116",
+                "on-secondary-fixed-variant": "#5c5b5f",
+                "tertiary-container": "#d2d9f8",
+                "on-tertiary-container": "#444c65",
+                "on-secondary-fixed": "#403f43",
+                "primary-dim": "#4034d7",
+                "secondary-container": "#e5e1e6",
+                "primary-container": "#e2dfff",
+                "surface-container-highest": "#e4e2e2",
+                "inverse-primary": "#8582ff",
+                "surface-tint": "#4d44e3",
+                "secondary-dim": "#545256",
+                "error": "#9e3f4e",
+                "secondary-fixed-dim": "#d7d3d8",
+                "on-error": "#fff7f7",
+                "primary-fixed-dim": "#d2d0ff",
+                "outline": "#7b7a7a",
+                "on-surface": "#323232",
+                "on-primary": "#faf6ff",
+                "surface-dim": "#dbdad9"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Authority: JSON & Conflict Resolution) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 gap-2 border-r border-[#b3b2b1]/15 bg-[#f6f3f2] dark:bg-[#1a1a1a] w-64 z-50">
+<!-- Header Info -->
+<div class="flex items-center gap-3 px-2 mb-6">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="lan">lan</span>
+</div>
+<div>
+<h2 class="text-on-surface font-bold text-sm leading-tight">Engineering</h2>
+<p class="text-on-surface-variant text-xs">Product Ops</p>
+</div>
+</div>
+<!-- CTA -->
+<button class="flex items-center justify-center gap-2 w-full py-2.5 mb-4 bg-gradient-to-br from-primary to-primary-dim text-on-primary rounded-lg font-semibold text-sm shadow-sm transition-transform active:scale-[0.98]">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+            New Task
+        </button>
+<!-- Navigation Tabs (Mapping from JSON logic) -->
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-[#a3a3a3] hover:bg-[#ffffff]/50 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="corporate_fare">corporate_fare</span>
+<span class="text-[0.875rem]">Company</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-[#a3a3a3] hover:bg-[#ffffff]/50 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_tree">account_tree</span>
+<span class="text-[0.875rem]">Project</span>
+</a>
+<!-- Active State determined by page context (Engineering/Trackers) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-[#ffffff] dark:bg-[#2a2a2a] text-[#4f46e5] dark:text-[#6366f1] rounded-lg shadow-sm border-l-4 border-[#4f46e5] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="lan">lan</span>
+<span class="text-[0.875rem]">Department</span>
+</a>
+</nav>
+<div class="mt-8 mb-2 px-3">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/60">Nav Items</p>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-[#a3a3a3] hover:bg-[#ffffff]/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="text-[0.875rem]">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-[#ffffff]/80 text-[#4f46e5] font-semibold rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="task_alt">task_alt</span>
+<span class="text-[0.875rem]">Trackers</span>
+</a>
+</nav>
+<!-- Footer -->
+<div class="mt-auto space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-[#a3a3a3] hover:bg-[#ffffff]/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="text-[0.875rem]">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#5f5f5f] dark:text-[#a3a3a3] hover:bg-[#ffffff]/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="text-[0.875rem]">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 flex flex-col h-screen overflow-hidden bg-background">
+<!-- TopNavBar (Authority: JSON & Conflict Resolution) -->
+<header class="flex justify-between items-center w-full px-6 py-3 h-16 bg-[#fcf9f8] dark:bg-[#0e0e0e] sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-on-surface-variant font-medium text-sm">
+<span>Project Alpha</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span>Engineering</span>
+<span class="material-symbols-outlined text-xs" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary font-semibold">Trackers</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="search">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary placeholder:text-on-surface-variant/50" placeholder="Search tasks..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="settings">settings</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full border border-outline-variant/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4582-jwJ_rE9WYhF6rVO8dwosB8P1_geAgIk2gQXrB5XFMcLd6iBRWvIKOOC0K-DxJZ-AP-lj5m4Qd0Zd0vwQa9aQi7vMg5rOcmKm-0BwHKQEjo-BVsO99Wh6Q8KB0gwYqjt4p6zZvA_rHBvXw3coAWXXsmwzSiBq4YPmlXHnVl0-28oZWypBByrzEu1sbl2kqeKHnQKy1qqxaTlEB4wtY_x56eCoQCjJajQesujHuVqO2O4yclFbootdsRUP9y1zOR1L5vxrWhjS"/>
+</div>
+</div>
+</header>
+<!-- Kanban Board Area -->
+<section class="flex-1 p-6 overflow-x-auto overflow-y-hidden">
+<div class="flex h-full gap-6">
+<!-- Column: To Do -->
+<div class="kanban-column flex flex-col h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-on-surface tracking-tight">To Do</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">4</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px]" data-icon="add">add</button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-hide">
+<!-- Card 1 -->
+<div class="glass-card p-4 rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.05)] border border-outline-variant/10 hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container/20 text-error uppercase">High</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity text-[18px]" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="text-on-surface font-semibold text-sm mb-1">Architecture Review: Service Mesh</h4>
+<p class="text-on-surface-variant text-xs line-clamp-2 mb-4 leading-relaxed">Evaluate Istio vs Linkerd for the new cluster deployment in project-beta.</p>
+<div class="flex items-center justify-between">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full ring-2 ring-surface-container-lowest" data-alt="portrait of a focused engineer in a minimalist modern office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAt91pqtMLdTxuaT0K3F3LoK91dI-cypiKrObS1Oo8UzxlBxofGUUNHL95jM2586gwhx9mxFYfBa2ZPXga9TWAv58dd8TaWEqmpLmHfT4AYOrzM8VhQoa1CvsCBMxRK-vRjT7jFtc_HlYkfDs7aK_gUy8-5qVmEXu50Nuu8bLcGpIvVnvGbh78gWN34nYaoVI-BNvX_Ae2fp2W_QFuSaD4i_3QjNVVGUIqOMEQC7ByO87_6rWq25ehcy6QWRxz5VuXJz8y73jTeCHg"/>
+<img class="w-6 h-6 rounded-full ring-2 ring-surface-container-lowest" data-alt="professional headshot of a developer in a casual grey hoodie against a soft bokeh city background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyFclXzj5Tn7nNTedsQRqWM1kBqxAIPkww9hYIvhP-19UgQj4rtbsh1h0ifBAsdiAOcUMPAR8Q73orCpO6v3SaFjwpH0rZfJ_02QCyJpPax_r0xgMCXavLxg4WR5AaSkN1ylLHRo60cWq0nczPnDHE2B4dGFbiLOPcMtd8Tb5fw0VjX3_iInWfzsFRxm_Im3xtq8heMdU1eF4YjI4it366kx9ZzUa07Af4nL4aqAI4gHwglLIynFJSmg7ZH4Uye8kLb7Kf-pRlgepD"/>
+</div>
+<div class="flex items-center text-on-surface-variant text-[10px] gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="calendar_today">calendar_today</span>
+<span>Oct 24</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-4 rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.05)] border border-outline-variant/10 hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-tertiary-container/30 text-tertiary uppercase">Medium</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity text-[18px]" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="text-on-surface font-semibold text-sm mb-1">Legacy DB Migration Script</h4>
+<p class="text-on-surface-variant text-xs line-clamp-2 mb-4 leading-relaxed">Ensure all user records are mapped correctly to the new PostgreSQL schema.</p>
+<div class="flex items-center justify-between">
+<img class="w-6 h-6 rounded-full" data-alt="smiling software engineer working on a laptop in a bright airy coworking space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2N6yHES1s85NygDpqMOTlrJDHz34tmpSU6KXqOLpZjF0eM-ivA-FtSAF283m8ujebSBemsIxy4dFGjIS1_2S8lPh8lq4CnHP8wuW4pXDjKW6DLh5rVxVm0X4aqAKPXcs1i4_CgEbE6QHydMddBJKeNNPUXANvslinYlyu6Yn3Z6vpU8n9FDc2S3tYMggTm-ZOKoI_p8d1bJK5o6j4ZuCRnSRX1aE4gGyA_QwkUlkVaUP_lQH1ZiRf4Ta4WeKHM2O_OjvcIoxfL2FO"/>
+<div class="flex items-center text-on-surface-variant text-[10px] gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="chat_bubble_outline">chat_bubble_outline</span>
+<span>3</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: In Progress -->
+<div class="kanban-column flex flex-col h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-on-surface tracking-tight">In Progress</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary-container text-primary text-[10px] font-bold">2</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px]" data-icon="add">add</button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-hide">
+<!-- Card 3 -->
+<div class="glass-card p-4 rounded-lg shadow-[0px_1px_2px_rgba(0,0,0,0.05)] border-l-4 border-primary border-y-outline-variant/10 border-r-outline-variant/10 hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-error-container/20 text-error uppercase">High</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity text-[18px]" data-icon="more_horiz">more_horiz</span>
+</div>
+<h4 class="text-on-surface font-semibold text-sm mb-1">API Rate Limiter Implementation</h4>
+<p class="text-on-surface-variant text-xs line-clamp-2 mb-4 leading-relaxed">Adding sliding window counter for the public gateway endpoints.</p>
+<div class="flex items-center justify-between">
+<img class="w-6 h-6 rounded-full" data-alt="modern abstract digital art representing connectivity and flow with glowing lines on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANktPpwTzU9tRd4nIV87bOcjAesXPhtuC8i33xamLP8Fez6UhfpZ2A-rEan4FzMHruz2PC1vOmZz99ye4YnaaU1NLev7uQn2o3OV9zq_8EwYkcgt2fCCfDrrOy25MUpo0sQMWpQT7lVvrwNRUaT-rJDmoD_-FW03mBOFIUC9X9NYPmFMiV3sP5-tlONqsxcoKbgNSeo7CeAzNLBC9r4h1AWkyJgcqmtFfVAKR7U1px9SROvzDkF008sxCcGCIHy9ywhXjfHLMyptga"/>
+<div class="flex items-center gap-2">
+<div class="w-16 h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-3/4 h-full bg-primary"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium">75%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Done -->
+<div class="kanban-column flex flex-col h-full">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<h3 class="font-bold text-on-surface tracking-tight">Done</h3>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold">12</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-[20px]" data-icon="add">add</button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-hide">
+<!-- Card 4 -->
+<div class="bg-surface-container-low opacity-75 p-4 rounded-lg shadow-sm border border-outline-variant/10 group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-on-surface-variant/10 text-on-surface-variant uppercase">Low</span>
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h4 class="text-on-surface-variant font-semibold text-sm mb-1 line-through">Docker Image Optimization</h4>
+<p class="text-on-surface-variant/60 text-xs line-clamp-2 mb-4 leading-relaxed">Reduced base image size from 800MB to 120MB using multi-stage builds.</p>
+<div class="flex items-center justify-between">
+<img class="w-6 h-6 rounded-full grayscale" data-alt="a stack of sleek server racks in a dimly lit high-tech data center with blue status lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8oT4T7gktHSA_tc8qJm8YwSVRrkqtRYq3BA6I06s1pCuy_q3hciDcu2t9pmGwc6z4XnDZKiPrnR-tDrnDbZ9En5AIMNpDDz5CVSYJ8TkJ1BZLLET9AEdYZrhQULhHo7sz_CHyuwdri7j9nTVo5B2DU5OySt6nZKjpSTDxpdTnmtTV5wxymZWccwucQDcD-ex7SwQKK1swXhDxXcMCi6vimfW9g-dR42ysO6Lp6aeFDZ8-Mie3Q4iPIBRGEm0ZD0xhq_2bzZcDXpWK"/>
+<div class="text-[10px] text-on-surface-variant/60 font-medium">Completed Oct 20</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add Column Placeholder -->
+<div class="kanban-column flex flex-col h-full border-2 border-dashed border-outline-variant/20 rounded-xl items-center justify-center group hover:border-primary/40 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors mb-2" data-icon="add_circle">add_circle</span>
+<span class="text-sm font-medium text-on-surface-variant group-hover:text-primary transition-colors">Add Column</span>
+</div>
+</div>
+</section>
+<!-- Contextual FAB (Suppressed per rules as this is a task-focused screen, but generating for "Main Dashboard" feel if needed - following suppression rule instead) -->
+</main>
+</body></html>
