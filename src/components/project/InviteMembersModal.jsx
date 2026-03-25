@@ -43,11 +43,10 @@ export default function InviteMembersModal({ project, onClose }) {
     }
     setError('')
     setLoading(true)
-    const { error: dbError } = await supabase.from('project_members').insert({
-      project_id: project.id,
-      user_id: null,
-      invited_email: trimmed,
-      role,
+    const { error: dbError } = await supabase.rpc('invite_project_member', {
+      p_project_id: project.id,
+      p_email: trimmed,
+      p_role: role,
     })
     setLoading(false)
     if (dbError) {
