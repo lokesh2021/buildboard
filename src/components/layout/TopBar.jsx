@@ -1,6 +1,6 @@
 import { useAuth } from '../../context/AuthContext'
 
-export default function TopBar({ onNewProject }) {
+export default function TopBar({ onNewProject, onMenuClick }) {
   const { user } = useAuth()
 
   const displayName =
@@ -19,10 +19,18 @@ export default function TopBar({ onNewProject }) {
     .slice(0, 2)
 
   return (
-    <header className="sticky top-0 z-40 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-6 py-3 border-b border-outline-variant/10 h-16">
-      {/* Search */}
-      <div className="flex items-center gap-4 flex-1 max-w-md">
-        <div className="relative w-full">
+    <header className="sticky top-0 z-40 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-4 sm:px-6 py-3 border-b border-outline-variant/10 h-16">
+      <div className="flex items-center gap-3 flex-1 max-w-md">
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={onMenuClick}
+          className="md:hidden p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors"
+        >
+          <span className="material-symbols-outlined">menu</span>
+        </button>
+
+        {/* Search — hidden on mobile */}
+        <div className="relative w-full hidden sm:block">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/60 text-lg">
             search
           </span>
@@ -35,17 +43,17 @@ export default function TopBar({ onNewProject }) {
       </div>
 
       {/* Right actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         <button className="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors active:scale-95">
           <span className="material-symbols-outlined">notifications</span>
         </button>
-        <button className="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors active:scale-95">
+        <button className="p-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg transition-colors active:scale-95 hidden sm:flex">
           <span className="material-symbols-outlined">help</span>
         </button>
 
-        <div className="h-8 w-px bg-outline-variant/20 mx-1" />
+        <div className="h-8 w-px bg-outline-variant/20 mx-1 hidden sm:block" />
 
-        <div className="flex items-center gap-3 pl-1">
+        <div className="flex items-center gap-2 sm:gap-3 pl-0 sm:pl-1">
           <div className="text-right hidden sm:block">
             <p className="text-xs font-bold leading-none text-on-surface">{displayName}</p>
           </div>

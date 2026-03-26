@@ -11,6 +11,7 @@ export default function Dashboard() {
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [showModal, setShowModal] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const displayName =
     user?.user_metadata?.full_name ||
@@ -43,18 +44,25 @@ export default function Dashboard() {
 
   return (
     <div className="flex min-h-screen bg-background">
-      <ProjectSidebar onNewProject={() => setShowModal(true)} />
+      <ProjectSidebar
+        onNewProject={() => setShowModal(true)}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+      />
 
-      <div className="ml-64 flex-1 flex flex-col">
-        <TopBar onNewProject={() => setShowModal(true)} />
+      <div className="md:ml-64 flex-1 flex flex-col">
+        <TopBar
+          onNewProject={() => setShowModal(true)}
+          onMenuClick={() => setSidebarOpen(true)}
+        />
 
-        <main className="flex-1 p-8 max-w-7xl mx-auto w-full space-y-8">
+        <main className="flex-1 p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-6 sm:space-y-8">
           {/* Welcome */}
           <section>
-            <h2 className="text-3xl font-extrabold tracking-tight text-on-surface">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-on-surface">
               {greeting}, {displayName}.
             </h2>
-            <p className="text-on-surface-variant mt-1">
+            <p className="text-on-surface-variant mt-1 text-sm sm:text-base">
               {projects.length === 0
                 ? 'Create your first project to get started.'
                 : `You have ${projects.length} active project${projects.length !== 1 ? 's' : ''}.`}
@@ -62,7 +70,7 @@ export default function Dashboard() {
           </section>
 
           {/* Stats row */}
-          <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             <StatCard
               label="Total Projects"
               value={projects.length}
@@ -100,7 +108,7 @@ export default function Dashboard() {
             </div>
 
             {loading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
@@ -111,14 +119,14 @@ export default function Dashboard() {
             ) : projects.length === 0 ? (
               <EmptyState onNewProject={() => setShowModal(true)} />
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {projects.map((project) => (
                   <ProjectCard key={project.id} project={project} />
                 ))}
                 {/* Ghost "add" card */}
                 <button
                   onClick={() => setShowModal(true)}
-                  className="rounded-xl border-2 border-dashed border-outline-variant/30 hover:border-primary/30 hover:bg-primary/3 transition-all duration-200 flex flex-col items-center justify-center gap-3 p-8 text-on-surface-variant hover:text-primary min-h-[200px] group"
+                  className="rounded-xl border-2 border-dashed border-outline-variant/30 hover:border-primary/30 hover:bg-primary/3 transition-all duration-200 flex flex-col items-center justify-center gap-3 p-8 text-on-surface-variant hover:text-primary min-h-[160px] sm:min-h-[200px] group"
                 >
                   <div className="w-12 h-12 rounded-full border-2 border-dashed border-current flex items-center justify-center group-hover:scale-110 transition-transform">
                     <span className="material-symbols-outlined">add</span>
@@ -134,7 +142,7 @@ export default function Dashboard() {
       {/* FAB */}
       <button
         onClick={() => setShowModal(true)}
-        className="fixed bottom-8 right-8 w-14 h-14 primary-gradient text-on-primary rounded-full shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 transition-transform active:scale-95 z-40"
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-14 h-14 primary-gradient text-on-primary rounded-full shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-105 transition-transform active:scale-95 z-40"
       >
         <span
           className="material-symbols-outlined"
@@ -156,14 +164,14 @@ export default function Dashboard() {
 
 function StatCard({ label, value, icon, iconBg, iconColor }) {
   return (
-    <div className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center justify-between">
+    <div className="bg-surface-container-lowest p-5 sm:p-6 rounded-xl border border-outline-variant/10 shadow-sm flex items-center justify-between">
       <div>
         <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">
           {label}
         </p>
-        <p className="text-4xl font-black text-on-surface">{value}</p>
+        <p className="text-3xl sm:text-4xl font-black text-on-surface">{value}</p>
       </div>
-      <div className={`w-12 h-12 rounded-full ${iconBg} flex items-center justify-center ${iconColor}`}>
+      <div className={`w-11 h-11 sm:w-12 sm:h-12 rounded-full ${iconBg} flex items-center justify-center ${iconColor}`}>
         <span className="material-symbols-outlined">{icon}</span>
       </div>
     </div>
@@ -172,12 +180,12 @@ function StatCard({ label, value, icon, iconBg, iconColor }) {
 
 function EmptyState({ onNewProject }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
+    <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center">
       <div className="w-20 h-20 rounded-2xl bg-primary-container/40 flex items-center justify-center mb-6">
         <span className="material-symbols-outlined text-primary text-4xl">rocket_launch</span>
       </div>
       <h4 className="text-xl font-bold text-on-surface mb-2">No projects yet</h4>
-      <p className="text-on-surface-variant max-w-sm mb-8">
+      <p className="text-on-surface-variant max-w-sm mb-8 text-sm">
         Create your first project to start organizing tasks, writing docs, and collaborating with
         your team.
       </p>

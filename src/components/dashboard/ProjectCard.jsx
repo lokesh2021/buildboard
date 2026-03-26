@@ -30,7 +30,7 @@ export default function ProjectCard({ project }) {
 
   return (
     <div
-      onClick={() => navigate(`/project/${project.id}/documents`)}
+      onClick={() => navigate(`/project/${project.id}`)}
       className="bg-surface-container-lowest rounded-xl border border-outline-variant/10 shadow-sm hover:shadow-md hover:border-outline-variant/20 transition-all duration-200 cursor-pointer group overflow-hidden"
     >
       {/* Color band */}

@@ -9,7 +9,7 @@ const STATUSES = [
   { value: 'done', label: 'Done' },
 ]
 
-export default function NewTaskModal({ projectId, department, defaultStatus = 'todo', onClose, onCreated, onUpdated, task: editTask = null }) {
+export default function NewTaskModal({ projectId, department, sprintId = null, defaultStatus = 'todo', onClose, onCreated, onUpdated, task: editTask = null }) {
   const isEdit = !!editTask
   const { user } = useAuth()
 
@@ -57,6 +57,7 @@ export default function NewTaskModal({ projectId, department, defaultStatus = 't
         .insert({
           project_id: projectId,
           department,
+          sprint_id: sprintId || null,
           title: title.trim(),
           description: description.trim(),
           priority,

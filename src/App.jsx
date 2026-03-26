@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import AuthPage from './pages/AuthPage'
 import Dashboard from './pages/Dashboard'
+import ProjectDetails from './pages/ProjectDetails'
 import ProjectDocuments from './pages/ProjectDocuments'
 import DocumentView from './pages/DocumentView'
 import ProjectTrackers from './pages/ProjectTrackers'
@@ -29,6 +30,14 @@ export default function App() {
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/project/:projectId"
+        element={
+          <ProtectedRoute>
+            <ProjectDetails />
           </ProtectedRoute>
         }
       />
